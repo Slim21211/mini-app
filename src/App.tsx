@@ -1,26 +1,19 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { useEffect } from "react";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+const App = () => {
+  useEffect(() => {
+    const tg = window.Telegram?.WebApp;
+
+    if (tg) {
+      tg.expand();
+      tg.MainButton.setText("Нажми меня");
+      tg.MainButton.show();
+    } else {
+      console.warn("Запустите Mini App внутри Telegram!");
+    }
+  }, []);
+
+  return <div>Привет, это Mini App в Telegram!</div>;
+};
 
 export default App;
